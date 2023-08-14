@@ -14,7 +14,7 @@ class GildedRose
       when "Backstage passes to a TAFKAL80ETC concert"
         PassDecorator.new(item).update
       when "Sulfuras, Hand of Ragnaros"
-        update_legendary(item)
+        ItemDecorator.new(item).update
       else
         update_normal(item)
       end
@@ -42,6 +42,9 @@ end
 class ItemDecorator
   def initialize(item)
     @item = item
+  end
+
+  def update
   end
 end
 
