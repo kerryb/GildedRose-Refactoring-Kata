@@ -31,36 +31,34 @@ class ItemDecorator
 
   def update
   end
+
+  private
+
+  def increase_quality
+    if @item.quality < 50
+      @item.quality = @item.quality + 1
+    end
+  end
 end
 
 class BrieDecorator < ItemDecorator
   def update
-    if @item.quality < 50
-      @item.quality = @item.quality + 1
-    end
+    increase_quality
     @item.sell_in = @item.sell_in - 1
     if @item.sell_in < 0
-      if @item.quality < 50
-        @item.quality = @item.quality + 1
-      end
+      increase_quality
     end
   end
 end
 
 class PassDecorator < ItemDecorator
   def update
-    if @item.quality < 50
-      @item.quality = @item.quality + 1
-      if @item.sell_in < 11
-        if @item.quality < 50
-          @item.quality = @item.quality + 1
-        end
-      end
-      if @item.sell_in < 6
-        if @item.quality < 50
-          @item.quality = @item.quality + 1
-        end
-      end
+    increase_quality
+    if @item.sell_in < 11
+      increase_quality
+    end
+    if @item.sell_in < 6
+      increase_quality
     end
     @item.sell_in = @item.sell_in - 1
     if @item.sell_in < 0
