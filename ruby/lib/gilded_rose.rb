@@ -38,13 +38,13 @@ class ItemDecorator
 
   def increase_quality
     if @item.quality < MAX_QUALITY
-      @item.quality = @item.quality + 1
+      @item.quality += 1
     end
   end
 
   def decrease_quality
     if @item.quality > 0
-      @item.quality = @item.quality - 1
+      @item.quality -= 1
     end
   end
 end
