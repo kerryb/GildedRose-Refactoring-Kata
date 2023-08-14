@@ -8,17 +8,19 @@ class GildedRose
 
   def update_quality()
     @items.each do |item|
-      case item.name
-      when "Aged Brie"
-        BrieDecorator.new(item).update
-      when "Backstage passes to a TAFKAL80ETC concert"
-        PassDecorator.new(item).update
-      when "Sulfuras, Hand of Ragnaros"
-        ItemDecorator.new(item).update
-      else
-        NormalDecorator.new(item).update
-      end
+      decorate(item).update
     end
+  end
+
+  private
+  def decorate(item)
+    cls = case item.name
+          when "Aged Brie" then BrieDecorator
+          when "Backstage passes to a TAFKAL80ETC concert" then PassDecorator
+          when "Sulfuras, Hand of Ragnaros" then ItemDecorator
+          else NormalDecorator
+          end
+    cls.new(item)
   end
 end
 
