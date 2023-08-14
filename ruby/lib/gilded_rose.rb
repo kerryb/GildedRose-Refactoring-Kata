@@ -12,7 +12,7 @@ class GildedRose
       when "Aged Brie"
         BrieDecorator.new(item).update
       when "Backstage passes to a TAFKAL80ETC concert"
-        update_pass(item)
+        PassDecorator.new(item).update
       when "Sulfuras, Hand of Ragnaros"
         update_legendary(item)
       else
@@ -22,26 +22,6 @@ class GildedRose
   end
 
   private
-
-  def update_pass(item)
-    if item.quality < 50
-      item.quality = item.quality + 1
-      if item.sell_in < 11
-        if item.quality < 50
-          item.quality = item.quality + 1
-        end
-      end
-      if item.sell_in < 6
-        if item.quality < 50
-          item.quality = item.quality + 1
-        end
-      end
-    end
-    item.sell_in = item.sell_in - 1
-    if item.sell_in < 0
-      item.quality = 0
-    end
-  end
 
   def update_legendary(item)
   end
@@ -73,6 +53,32 @@ class BrieDecorator
       if @item.quality < 50
         @item.quality = @item.quality + 1
       end
+    end
+  end
+end
+
+class PassDecorator
+  def initialize(item)
+    @item = item
+  end
+
+  def update
+    if @item.quality < 50
+      @item.quality = @item.quality + 1
+      if @item.sell_in < 11
+        if @item.quality < 50
+          @item.quality = @item.quality + 1
+        end
+      end
+      if @item.sell_in < 6
+        if @item.quality < 50
+          @item.quality = @item.quality + 1
+        end
+      end
+    end
+    @item.sell_in = @item.sell_in - 1
+    if @item.sell_in < 0
+      @item.quality = 0
     end
   end
 end
