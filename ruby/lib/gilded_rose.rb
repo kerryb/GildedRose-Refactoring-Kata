@@ -41,6 +41,12 @@ class ItemDecorator
       @item.quality = @item.quality + 1
     end
   end
+
+  def decrease_quality
+    if @item.quality > 0
+      @item.quality = @item.quality - 1
+    end
+  end
 end
 
 class BrieDecorator < ItemDecorator
@@ -71,14 +77,10 @@ end
 
 class NormalDecorator < ItemDecorator
   def update
-    if @item.quality > 0
-      @item.quality = @item.quality - 1
-    end
+    decrease_quality
     @item.sell_in = @item.sell_in - 1
     if @item.sell_in < 0
-      if @item.quality > 0
-        @item.quality = @item.quality - 1
-      end
+      decrease_quality
     end
   end
 end
