@@ -1,5 +1,9 @@
 #!/usr/env/bin ruby
 
+
+# Usage:
+#     diff <(ruby ./golden_master.rb) original_gm_output
+
 require_relative "lib/gilded_rose"
 
 names = ["Aged Brie", "Backstage passes to a TAFKAL80ETC concert", "Sulfuras, Hand of Ragnaros", "Something normal"]
