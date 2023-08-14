@@ -34,8 +34,10 @@ class ItemDecorator
 
   private
 
+  MAX_QUALITY = 50
+
   def increase_quality
-    if @item.quality < 50
+    if @item.quality < MAX_QUALITY
       @item.quality = @item.quality + 1
     end
   end
