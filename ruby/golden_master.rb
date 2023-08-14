@@ -18,5 +18,5 @@ gilded_rose = GildedRose.new(items)
 
 (1..30).each {|iteration|
   gilded_rose.update_quality
-  gilded_rose.items.each {|item| p [iteration, item.name, item.sell_in, item.quality]}
+  gilded_rose.items.each {|item| puts "#{iteration}: #{item}" }
 }
