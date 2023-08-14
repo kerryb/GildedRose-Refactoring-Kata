@@ -16,24 +16,7 @@ class GildedRose
       when "Sulfuras, Hand of Ragnaros"
         ItemDecorator.new(item).update
       else
-        update_normal(item)
-      end
-    end
-  end
-
-  private
-
-  def update_legendary(item)
-  end
-
-  def update_normal(item)
-    if item.quality > 0
-      item.quality = item.quality - 1
-    end
-    item.sell_in = item.sell_in - 1
-    if item.sell_in < 0
-      if item.quality > 0
-        item.quality = item.quality - 1
+        NormalDecorator.new(item).update
       end
     end
   end
@@ -80,6 +63,20 @@ class PassDecorator < ItemDecorator
     @item.sell_in = @item.sell_in - 1
     if @item.sell_in < 0
       @item.quality = 0
+    end
+  end
+end
+
+class NormalDecorator < ItemDecorator
+  def update
+    if @item.quality > 0
+      @item.quality = @item.quality - 1
+    end
+    @item.sell_in = @item.sell_in - 1
+    if @item.sell_in < 0
+      if @item.quality > 0
+        @item.quality = @item.quality - 1
+      end
     end
   end
 end
