@@ -15,9 +15,8 @@ items = names.flat_map {|name|
 }
 
 gilded_rose = GildedRose.new(items)
-gilded_rose.items.each {|gr| p [0, gr]}
 
 (1..30).each {|iteration|
   gilded_rose.update_quality
-  gilded_rose.items.each {|gr| p [iteration, gr]}
+  gilded_rose.items.each {|item| p [iteration, item.name, item.sell_in, item.quality]}
 }
