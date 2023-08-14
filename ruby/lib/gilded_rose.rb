@@ -1,5 +1,7 @@
-$: << "lib"
-require "item_decorator"
+require_relative "item_decorator"
+require_relative "brie_decorator"
+require_relative "pass_decorator"
+require_relative "normal_decorator"
 
 class GildedRose
   attr_reader :items
@@ -23,42 +25,6 @@ class GildedRose
           else NormalDecorator
           end
     cls.new(item)
-  end
-end
-
-class BrieDecorator < ItemDecorator
-  def update
-    increase_quality
-    @item.sell_in = @item.sell_in - 1
-    if @item.sell_in < 0
-      increase_quality
-    end
-  end
-end
-
-class PassDecorator < ItemDecorator
-  def update
-    increase_quality
-    if @item.sell_in < 11
-      increase_quality
-    end
-    if @item.sell_in < 6
-      increase_quality
-    end
-    @item.sell_in = @item.sell_in - 1
-    if @item.sell_in < 0
-      @item.quality = 0
-    end
-  end
-end
-
-class NormalDecorator < ItemDecorator
-  def update
-    decrease_quality
-    @item.sell_in = @item.sell_in - 1
-    if @item.sell_in < 0
-      decrease_quality
-    end
   end
 end
 
