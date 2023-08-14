@@ -39,11 +39,13 @@ class GildedRose
   end
 end
 
-class BrieDecorator
+class ItemDecorator
   def initialize(item)
     @item = item
   end
+end
 
+class BrieDecorator < ItemDecorator
   def update
     if @item.quality < 50
       @item.quality = @item.quality + 1
@@ -57,11 +59,7 @@ class BrieDecorator
   end
 end
 
-class PassDecorator
-  def initialize(item)
-    @item = item
-  end
-
+class PassDecorator < ItemDecorator
   def update
     if @item.quality < 50
       @item.quality = @item.quality + 1
