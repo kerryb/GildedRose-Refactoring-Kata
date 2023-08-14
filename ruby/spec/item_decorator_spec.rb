@@ -1,4 +1,4 @@
-require_relative "../lib/gilded_rose"
+require "gilded_rose"
 
 describe ItemDecorator do
   describe "#update" do
