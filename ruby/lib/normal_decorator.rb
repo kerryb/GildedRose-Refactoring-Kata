@@ -1,4 +1,4 @@
-require_relative "item_decorator"
+require_relative "gilded_rose"
 
 class NormalDecorator < ItemDecorator
   def update
